@@ -4,11 +4,11 @@ import {launchCameraAsync,useCameraPermissions,PermissionStatus} from 'expo-imag
 
 import { Colors } from '../../constants/Colors';
 import OutlinedButton from '../UI/OutlinedButton';
-const ImagePicker = () => {
+const ImagePicker = ({onImageTaken}) => {
   const [camerapermissionoption,requestPermission] = useCameraPermissions();
   const [pickedimage,setpickedimage] = useState();
   async function verifypermission(){
-    if(camerapermissionoption.status===PermissionStatus.UNDETERMINED){
+    if(camerapermissionoption.status===PermissionStatus.UNDETERMINED || camerapermissionoption.status===PermissionStatus.DENIED ){
       const permissionresponse = requestPermission();
       return permissionresponse;
     }
@@ -31,6 +31,7 @@ const ImagePicker = () => {
         quality:0.5,
     })
     setpickedimage(image.uri)
+    onImageTaken(image.uri)
   }
   let previewimage = <Text>No Image taken yet.</Text>
 
@@ -40,7 +41,7 @@ const ImagePicker = () => {
   return (
     <View>
         <View style={styles.imagepreview}>{previewimage}</View>
-        <OutlinedButton name="camera" >Take Image</OutlinedButton>
+        <OutlinedButton name="camera" onPress={takeImageHandler} >Take Image</OutlinedButton>
     </View>
   )
 }

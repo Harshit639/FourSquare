@@ -6,6 +6,8 @@ import Allplaces from './screens/Allplaces';
 import Addplace from './screens/Addplace';
 import IconButton from './components/UI/IconButton';
 import { Colors } from './constants/Colors';
+import Map from './screens/Map';
+
 const Stack = createNativeStackNavigator()
 export default function App() {
   
@@ -31,6 +33,7 @@ export default function App() {
     options={{
       title:"Add a Place",
     }}/>
+    <Stack.Screen component={Map} name="Maps"/>
    </Stack.Navigator>
    </NavigationContainer>
    </>

@@ -4,24 +4,28 @@ import PlaceItem from './PlaceItem'
 import { Colors } from '../../constants/Colors'
 
 const PlaceList = ({places}) => {
-  if(!places || places.lengh==0){
+  if(!places || places.length===0){
     return(
       <View style={styles.fallbackcontainer}>
         <Text style={styles.fallbacktext}> NO Places added Yet!</Text>
       </View>
     )
   }
-  function renderfunctionhandler(item){
-    return <PlaceItem place={item}/>
+  function renderfunctionhandler(itemdata){
+    return <PlaceItem place={itemdata.item}/>
   }
   return (
-    <FlatList data={places} keyExtractor={(item)=> item.id} renderItem={renderfunctionhandler}/>
+    <FlatList
+    style={styles.list} data={places} keyExtractor={(item)=> item.id} renderItem={renderfunctionhandler}/>
   )
 }
 
 export default PlaceList
 
 const styles = StyleSheet.create({
+  list:{
+    margin:24,
+  },
   fallbackcontainer:{
     flex:1,
     justifyContent:'center',

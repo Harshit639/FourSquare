@@ -1,9 +1,17 @@
 import React  from "react";
 import Placeform from "../components/Places/Placeform";
 
-function Addplace(){
+function Addplace({navigation}){
 
-    return <Placeform/>
+    function createplaceHandler(place){
+        console.log(place.address)
+        navigation.navigate('AllPlaces',{
+            place:place,
+
+        })
+    }
+
+    return <Placeform oncreateplace={createplaceHandler}/>
 }
 
 export default Addplace;
