@@ -6,7 +6,7 @@ import { Colors } from '../../constants/Colors'
 const PlaceItem = ({place,onselect}) => {
   console.log("lauda"+place.imageUri+"lauda")
   return (
-    <Pressable onPress={onselect} style={({pressed})=>[styles.button,pressed && styles.pressed]}>
+    <Pressable onPress={onselect.bind(this,place.id)} style={({pressed})=>[styles.item,pressed && styles.pressed]}>
         <Image style={styles.image} source={{uri: place.imageUri}}/>
         <View style={styles.info}>
             <Text style={styles.title} >{place.title}</Text>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   item:{
     flexDirection:'row',
     alignItems:'flex-start', 
-    flex:1,
+    
     borderRadius:6,
     marginVertical:12,
     backgroundColor:Colors.primary500,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     opacity:0.9,
   },
   image:{
-    flex:1,
+     flex:1,
     borderTopLeftRadius:4,
     borderBottomLeftRadius:4,
     height:100,
