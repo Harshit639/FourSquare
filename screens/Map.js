@@ -3,7 +3,7 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import IconButton from '../components/UI/IconButton';
-
+import {PROVIDER_GOOGLE} from 'react-native-maps'
 function Map({route}) {
   const initiallocation = route.params && {
     lat: route.params.initialLat,
@@ -51,6 +51,7 @@ function Map({route}) {
     <MapView
       style={styles.map}
       initialRegion={region}
+      provider={PROVIDER_GOOGLE}
       onPress={selectLocationHandler}
     >
       {selectedLocation && (
